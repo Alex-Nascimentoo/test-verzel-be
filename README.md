@@ -40,3 +40,56 @@ __3.__ Agore conecte a API ao seu banco de dados MySQL a partir da linha 9 do ar
 __4.__ Para poder rodar o app Flask adicione a variável que indica o app a ser executado, utilize o comando ```export FLASK_APP=main```.
 
 __5.__ Agora é só inicializar a aplicação em Flask com o comando ```flask run``` e estamos prontos para testar o aplicativo.
+
+## Rotas
+
+__GET__ ```http://localhost:5000/vehicles``` retorna um JSON com uma lista de objetos do tipo:
+```javascript
+{
+  "id": number,
+  "brand": string,
+  "model": string,
+  "version": string,
+  "price": number,
+  "color": string,
+  "category": string,
+  "engine": string,
+  "transmission": string,
+  "year": number,
+  "km_old": number,
+  "photo": string
+},
+```
+
+__GET__ ```http://localhost:5000/vehicles/:id``` retorna um JSON com um único objeto do mesmo tipo acima
+
+__POST__ ```http://localhost:5000/vehicles``` cadastra um novo veículo no banco de dados e retorna o mesmo com o código http 201. A rota espera um JSON no body do tipo:
+```javascript
+{
+	"brand": string,
+	"model": string,
+	"version": string,
+	"price": number,
+	"color": string,
+	"category": string,
+	"engine": string,
+	"transmission": string,
+	"year": number,
+	"km_old": number,
+  "photo": string
+}
+```
+
+__PUT__ ```http://localhost:5000/vehicles/:id``` atualiza o veículo especificado pelo id. A rota espera um objeto JSON no body do igual ao da rota acima.
+
+__DELETE__ ```http://localhost:5000/vehicles/:id``` deleta um veículo do banco de dados de acordo com o id especificado na rota.
+
+
+
+
+
+
+
+
+
+
