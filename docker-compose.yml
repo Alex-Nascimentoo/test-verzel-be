@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: db
+    image: mysql:5.7
+    restart: always
+    ports: 
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: verzel
+      MYSQL_USER: verzel
+      MYSQL_PASSWORD: verzel
+      MYSQL_ROOT_PASSWORD: verzel
+    expose:
+      - '3306'
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      
