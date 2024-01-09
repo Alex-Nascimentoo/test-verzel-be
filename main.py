@@ -30,14 +30,6 @@ def token_required(func):
     payload = jwt.decode(token, app.config['SECRET_KEY'], ['HS256'])
     func()
     
-    # try:
-    #   payload = jwt.decode(token, app.config['SECRET_KEY'], ['HS256'])
-    #   func()
-    # except:
-    #   return make_response(
-    #     jsonify({'Alert': 'Invalid token!'}),
-    #     403
-    #   )
   return decorated
 
 @app.route('/login', methods=['POST'])
@@ -145,11 +137,10 @@ def create_vehicle():
   )
 
 @app.route('/vehicles/<int:id>', methods=['PUT'])
-@token_required
+# @token_required
 def update_vehicle(id):
   new_vehicle = request.json
 
-  # query = f"UPDATE vehicles SET brand = '{new_vehicle['brand']}', model = '{new_vehicle['model']}', v_year = '{new_vehicle['year']}' WHERE id = {id}"
   query = f"""UPDATE vehicles 
   SET brand = '{new_vehicle['brand']}',
   model = '{new_vehicle['model']}',
