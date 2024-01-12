@@ -31,7 +31,7 @@ CREATE TABLE vehicles (
   transmission varchar(100),
   v_year integer,
   km_old integer,
-  photo varchar(255)
+  photo varchar(256) not null
 );
 ```
 
@@ -76,7 +76,7 @@ __POST__ ```http://localhost:5000/vehicles``` cadastra um novo veículo no banco
 	"transmission": string,
 	"year": number,
 	"km_old": number,
-  "photo": string
+	"photo": string
 }
 ```
 
