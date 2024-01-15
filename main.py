@@ -136,10 +136,11 @@ def create_vehicle():
     ), 201
   )
 
-@app.route('/vehicles/<int:id>', methods=['PUT'])
-# @token_required
-def update_vehicle(id):
+@app.route('/vehicles', methods=['PUT'])
+@token_required
+def update_vehicle():
   new_vehicle = request.json
+  id = request.args.get('id')
 
   query = f"""UPDATE vehicles 
   SET brand = '{new_vehicle['brand']}',
