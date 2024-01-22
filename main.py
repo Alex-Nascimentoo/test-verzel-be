@@ -4,6 +4,7 @@ from flask import Flask, make_response, jsonify, request
 from flask_cors import CORS, cross_origin
 from functools import wraps
 
+
 db = mysql.connector.connect(
   host='localhost',
   user='verzel',
@@ -31,6 +32,11 @@ def token_required(func):
   return decorated
 
 import routes
+from api.routes.vehicles import vehicle_api
+from api.routes.users import user_api
+
+app.register_blueprint(vehicle_api, url_prefix='/api/vehicles')
+app.register_blueprint(user_api, url_prefix='/api/users')
 
 if __name__ == '__main__':
   app.run()

@@ -1,31 +1,9 @@
-from main import app, db, token_required
-from flask import make_response, jsonify, request, session
-import jwt
-from datetime import datetime, timedelta
+from flask import Blueprint, make_response, jsonify, request, session
+from main import db, token_required
 
-@app.route('/login', methods=['POST'])
-def login():
-  if request.json['username'] and request.json['password'] == 'bolinho':
-    session['logged_in'] = True
+vehicle_api = Blueprint('vehicle_api', __name__)
 
-    token = jwt.encode({
-      'user': request.json['username'],
-      'expiration': str(datetime.utcnow() + timedelta(minutes=10))
-    },
-    app.config['SECRET_KEY'])
-
-    return make_response(jsonify(
-      message = 'Logged in successfully',
-      token = token
-    ), 200)
-  else:
-    return make_response('Unable to verify', 403, {
-      'WWW-Authenticate': 'Basic realm: "Authentication Failed!"'
-    })
-
-
-
-@app.route('/vehicles', methods=['GET'])
+@vehicle_api.route('/', methods=['GET'])
 def get_vehicles():
   cursor = db.cursor()
   cursor.execute('SELECT * FROM vehicles')
@@ -53,7 +31,7 @@ def get_vehicles():
     jsonify(vehicle_list)
   )
 
-@app.route('/vehicles/<int:id>', methods=['GET'])
+@vehicle_api.route('/<int:id>', methods=['GET'])
 def get_vehicle_by_id(id):
   query = f"SELECT * FROM vehicles WHERE id = {id}"
   cursor = db.cursor()
@@ -78,7 +56,7 @@ def get_vehicle_by_id(id):
     })
   )
 
-@app.route('/vehicles', methods=['POST'])
+@vehicle_api.route('/', methods=['POST'])
 @token_required
 def create_vehicle():
   vehicle = request.json
@@ -109,7 +87,7 @@ def create_vehicle():
     ), 201
   )
 
-@app.route('/vehicles', methods=['PUT'])
+@vehicle_api.route('/', methods=['PUT'])
 @token_required
 def update_vehicle():
   new_vehicle = request.json
@@ -155,7 +133,7 @@ def update_vehicle():
     })
   )
 
-@app.route('/vehicles/<int:id>', methods = ['DELETE'])
+@vehicle_api.route('/<int:id>', methods = ['DELETE'])
 def delete_vehicle(id):
   cursor = db.cursor()
   cursor.execute(f"DELETE FROM vehicles WHERE id = {id}")
