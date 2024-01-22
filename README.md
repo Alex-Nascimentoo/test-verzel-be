@@ -31,7 +31,7 @@ CREATE TABLE vehicles (
   transmission varchar(100),
   v_year integer,
   km_old integer,
-  photo varchar(255)
+  photo varchar(256) not null
 );
 ```
 
@@ -42,6 +42,14 @@ __4.__ Para poder rodar o app Flask adicione a variável que indica o app a ser 
 __5.__ Agora é só inicializar a aplicação em Flask com o comando ```flask run``` e estamos prontos para testar o aplicativo.
 
 ## Rotas
+
+__POST__ ```http://localhost:5000/login``` retorna um JSON com o seguinte objeto:
+```json
+{
+  "message": "Logged in successfully",
+  "token": "token<string>"
+}
+```
 
 __GET__ ```http://localhost:5000/vehicles``` retorna um JSON com uma lista de objetos do tipo:
 ```javascript
@@ -63,7 +71,7 @@ __GET__ ```http://localhost:5000/vehicles``` retorna um JSON com uma lista de ob
 
 __GET__ ```http://localhost:5000/vehicles/:id``` retorna um JSON com um único objeto do mesmo tipo acima
 
-__POST__ ```http://localhost:5000/vehicles``` cadastra um novo veículo no banco de dados e retorna o mesmo com o código http 201. A rota espera um JSON no body do tipo:
+__POST__ ```http://localhost:5000/vehicles?token={token<string>}``` cadastra um novo veículo no banco de dados e retorna o mesmo com o código HTTP 201. A rota espera um JSON no body do tipo:
 ```javascript
 {
 	"brand": string,
@@ -76,11 +84,11 @@ __POST__ ```http://localhost:5000/vehicles``` cadastra um novo veículo no banco
 	"transmission": string,
 	"year": number,
 	"km_old": number,
-  "photo": string
+	"photo": string
 }
 ```
 
-__PUT__ ```http://localhost:5000/vehicles/:id``` atualiza o veículo especificado pelo id. A rota espera um objeto JSON no body do igual ao da rota acima.
+__PUT__ ```http://localhost:5000/vehicles?id={id<int>}&token={token<string>}``` atualiza o veículo especificado pelo id. A rota espera um objeto JSON no body do igual ao da rota acima.
 
 __DELETE__ ```http://localhost:5000/vehicles/:id``` deleta um veículo do banco de dados de acordo com o id especificado na rota.
 
