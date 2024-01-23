@@ -43,7 +43,7 @@ __5.__ Agora é só inicializar a aplicação em Flask com o comando ```flask ru
 
 ## Rotas
 
-__POST__ ```http://localhost:5000/login``` retorna um JSON com o seguinte objeto:
+__POST__ ```http://localhost:5000/api/users/login``` retorna um JSON com o seguinte objeto:
 ```json
 {
   "message": "Logged in successfully",
@@ -51,7 +51,7 @@ __POST__ ```http://localhost:5000/login``` retorna um JSON com o seguinte objeto
 }
 ```
 
-__GET__ ```http://localhost:5000/vehicles``` retorna um JSON com uma lista de objetos do tipo:
+__GET__ ```http://localhost:5000/api/vehicles``` retorna um JSON com uma lista de objetos do tipo:
 ```javascript
 {
   "id": number,
@@ -69,9 +69,9 @@ __GET__ ```http://localhost:5000/vehicles``` retorna um JSON com uma lista de ob
 },
 ```
 
-__GET__ ```http://localhost:5000/vehicles/:id``` retorna um JSON com um único objeto do mesmo tipo acima
+__GET__ ```http://localhost:5000/api/vehicles/:id``` retorna um JSON com um único objeto do mesmo tipo acima
 
-__POST__ ```http://localhost:5000/vehicles?token={token<string>}``` cadastra um novo veículo no banco de dados e retorna o mesmo com o código HTTP 201. A rota espera um JSON no body do tipo:
+__POST__ ```http://localhost:5000/api/vehicles?token={token<string>}``` cadastra um novo veículo no banco de dados e retorna o mesmo com o código HTTP 201. A rota espera um JSON no body do tipo:
 ```javascript
 {
 	"brand": string,
@@ -88,9 +88,9 @@ __POST__ ```http://localhost:5000/vehicles?token={token<string>}``` cadastra um 
 }
 ```
 
-__PUT__ ```http://localhost:5000/vehicles?id={id<int>}&token={token<string>}``` atualiza o veículo especificado pelo id. A rota espera um objeto JSON no body do igual ao da rota acima.
+__PUT__ ```http://localhost:5000/api/vehicles?id={id<int>}&token={token<string>}``` atualiza o veículo especificado pelo id. A rota espera um objeto JSON no body do igual ao da rota acima.
 
-__DELETE__ ```http://localhost:5000/vehicles/:id``` deleta um veículo do banco de dados de acordo com o id especificado na rota.
+__DELETE__ ```http://localhost:5000/api/vehicles/:id``` deleta um veículo do banco de dados de acordo com o id especificado na rota.
 
 
 
