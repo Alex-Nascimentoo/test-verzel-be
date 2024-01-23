@@ -56,7 +56,7 @@ def get_vehicle_by_id(id):
     })
   )
 
-@vehicle_api.route('/', methods=['POST'])
+@vehicle_api.route('', methods=['POST'])
 @token_required
 def create_vehicle():
   vehicle = request.json
@@ -87,7 +87,7 @@ def create_vehicle():
     ), 201
   )
 
-@vehicle_api.route('/', methods=['PUT'])
+@vehicle_api.route('', methods=['PUT'])
 @token_required
 def update_vehicle():
   new_vehicle = request.json
