@@ -3,19 +3,15 @@
 ## Instruções de uso
 
 ### Com docker
-__1.__ Após clonar o repositório localmente, baixe as dependências com o comando ```pip install flask flask-cors mysql-connector-python pyjwt```
+__1.__ Após clonar o repositório localmente, inicialize o app com o comando ```docker compose up -d``` e a aplicação estará pronta para os testes.
 
-__2.__ Com as dependências prontas, rode o comando ```docker compose up -d```, isso irá subir um contâiner de nome "db" com MySQL na porta 3306, lá vai estar o banco e cinco registros pré-prontos para testar a aplicação.
-
-__3.__ Para poder rodar o app Flask adicione a variável que indica o app a ser executado, utilize o comando ```export FLASK_APP=main```.
-
-__4.__ Agora é só inicializar a aplicação em Flask com o comando ```flask run``` e estamos prontos para testar o aplicativo.
+Este comando irá criar um container chamado ```test-verzel-container``` rodando a aplicação Flask e outro container chamado ```verzel-db``` rodando um banco de dados MySQL.
 
 #
 
 ### Sem docker
 
-__1.__ Após clonar o repositório localmente, baixe as dependências com o comando ```pip install flask flask-cors mysql-connector-python pyjwt```
+__1.__ Após clonar o repositório localmente, baixe as dependências listadas no arquivo ```requirements.txt```
 
 __2.__  Com as dependências prontas, crie seu bando de dados MySQL e crie a tabela com o seguite código:
 ```sql
@@ -35,9 +31,9 @@ CREATE TABLE vehicles (
 );
 ```
 
-__3.__ Agore conecte a API ao seu banco de dados MySQL a partir da linha 9 do arquivo ```main.py```.
+__3.__ Agore conecte a API ao seu banco de dados MySQL a partir da linha 9 do arquivo ```app.py```.
 
-__4.__ Para poder rodar o app Flask adicione a variável que indica o app a ser executado, utilize o comando ```export FLASK_APP=main```.
+__4.__ Para poder rodar o app Flask, adicione a variável que indica o app a ser executado, utilize o comando ```export FLASK_APP=app```.
 
 __5.__ Agora é só inicializar a aplicação em Flask com o comando ```flask run``` e estamos prontos para testar o aplicativo.
 
