@@ -1,5 +1,5 @@
 from flask import Blueprint, make_response, jsonify, request, session
-from main import db, token_required
+from app import db, token_required
 
 vehicle_api = Blueprint('vehicle_api', __name__)
 

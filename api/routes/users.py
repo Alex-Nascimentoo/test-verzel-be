@@ -1,7 +1,7 @@
 from flask import Blueprint, request, make_response, session, jsonify
 import jwt
 from datetime import datetime, timedelta
-from main import app
+from app import app
 
 user_api = Blueprint('user_api', __name__)
 

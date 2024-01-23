@@ -6,7 +6,8 @@ from functools import wraps
 
 
 db = mysql.connector.connect(
-  host='localhost',
+  host='mysql',
+  port="3306",
   user='verzel',
   password='verzel',
   database='verzel'
