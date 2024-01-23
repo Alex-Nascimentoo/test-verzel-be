@@ -1,8 +1,18 @@
 version: '3.9'
 
 services:
-  db:
-    container_name: db
+  web:
+    container_name: test-verzel-container
+    image: alex/verzel-web-app
+    build: .
+    ports:
+      - "8080:5000"
+    restart: always
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: verzel-db
     image: mysql:5.7
     restart: always
     ports: 
