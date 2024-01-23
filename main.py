@@ -31,7 +31,6 @@ def token_required(func):
     
   return decorated
 
-import routes
 from api.routes.vehicles import vehicle_api
 from api.routes.users import user_api
 
