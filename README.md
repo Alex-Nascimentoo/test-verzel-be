@@ -5,7 +5,7 @@
 ### Com docker
 __1.__ Após clonar o repositório localmente, inicialize o app com o comando ```docker compose up -d``` e a aplicação estará pronta para os testes.
 
-Este comando irá criar um container chamado ```test-verzel-container``` rodando a aplicação Flask e outro container chamado ```verzel-db``` rodando um banco de dados MySQL.
+Este comando irá criar um container chamado ```test-verzel-container``` rodando a aplicação Flask na **porta 8080** e outro container chamado ```verzel-db``` rodando um banco de dados MySQL.
 
 #
 
